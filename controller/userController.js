@@ -132,3 +132,26 @@ exports.editUser = async (req, res) => {
 	}
 	
   }
+
+  exports.searchtask = async (req,res)=>{
+	//const {title} = req.body
+	try {
+		const newuser = await NewUser.findById(req.params.id)
+		if(!newuser){
+			res.status(401).json({
+				success:failure,
+				message:"Title is already present"
+			})
+		}
+		res.status(200).json({
+			success:true,
+			message:"Todo Found",
+			newuser
+		})
+	} catch (error) {
+		res.status(400).json({
+			success:false,
+			message: "Task not found"
+		})
+	}
+  }
